@@ -1,0 +1,91 @@
+<!doctype html>
+<html class="no-js" ng-app="studioDBApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Studio DB</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="scripts/controllers/controllers.js"></script>
+    <!-- endbuild -->
+  </head>
+  <body ng-controller="StudioListCtrl">
+    <!-- Add your site or application content here -->
+    <div class="header">
+      <div class="navbar" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#/">studio DB</a>
+            <div class="navbar-concept">
+                <p>Studio DB is a simple data bank for a digital creative studio in the UK. Any enqueries drop me a line.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+        <input ng-model="query" placeholder="Filter search">
+        Sort by:
+        <select ng-model="orderProp">
+            <option value="name">Alphabetical</option>
+            <option value="location">Location</option>
+        </select>
+
+        <a ng-click="filters.category = ''">All</a>
+        <a ng-click="filters.category = 'Digital'">Digital</a>
+        <a ng-click="filters.category = 'Animation'">Animation</a>
+        <ul>
+            <li ng-repeat="studio in studios | filter:query | orderBy:orderProp | filter:filters">
+                <a href="{{studio.url}}" target="_blank">
+                    <span>{{studio.name}}</span>
+                    <p>{{studio.location}}</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer">
+      <div class="container">
+        <p>&copy; sekkithub 2015</p>
+      </div>
+    </div>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
